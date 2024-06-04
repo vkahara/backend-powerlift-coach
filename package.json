@@ -1,0 +1,22 @@
+{
+  "name": "powerlift-coach-app",
+  "version": "1.0.0",
+  "description": "Powerlifting Coach App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ayo": "echo \"bing chilling\" && exit 1",
+    "start": "node index.js"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vkahara/powerlift-coach-app.git"
+  },
+  "author": "Kähärä and Gustafsson Software Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vkahara/powerlift-coach-app/issues"
+  },
+  "homepage": "https://github.com/vkahara/powerlift-coach-app#readme"
+}
