@@ -5,7 +5,6 @@ const typeDefs = gql`
     user(username: String!): User
     users: [User]
   }
-
   type Mutation {
     createUser(
       username: String!
@@ -15,7 +14,6 @@ const typeDefs = gql`
       deadliftMax: Float!
     ): User
   }
-
   type User {
     id: ID!
     username: String!
