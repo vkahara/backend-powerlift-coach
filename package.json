@@ -20,8 +20,12 @@
   "homepage": "https://github.com/vkahara/powerlift-coach-app#readme",
   "dependencies": {
     "apollo-server": "^3.13.0",
+    "argon2": "^0.40.3",
     "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
+    "graphql-middleware": "^6.1.35",
+    "graphql-shield": "^7.6.5",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "uuid": "^9.0.1"
   }
