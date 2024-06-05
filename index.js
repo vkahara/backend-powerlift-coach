@@ -1,10 +1,9 @@
-const http = require("http");
+const { ApolloServer } = require("apollo-server");
+const typeDefs = require("./schema");
+const resolvers = require("./resolvers");
 
-const app = http.createServer((request, response) => {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.end("SKIBIDI RIZZ TOILET");
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen().then(({ url }) => {
+  console.log(`Server ready at ${url}`);
 });
-
-const PORT = 3001;
-app.listen(PORT);
-console.log(`Server running on port ${PORT}`);
