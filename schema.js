@@ -22,6 +22,23 @@ const typeDefs = gql`
     benchMax: Float!
     deadliftMax: Float!
   }
+
+  type Exercise {
+    name: String!
+    sets: Int!
+    reps: Int!
+    intensity: Float
+    load: Int
+    rpe: Int
+  }
+
+  type Day {
+    exercises: [Exercise!]!
+  }
+
+  type Week {
+    days: [Day!]!
+  }
 `;
 
 module.exports = typeDefs;
