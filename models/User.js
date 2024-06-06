@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   squatMax: { type: Number, default: 0 },
   benchMax: { type: Number, default: 0 },
-  deadliftMax: { type: Number, default: 0 }
+  deadliftMax: { type: Number, default: 0 },
 });
 
 const User = mongoose.model("User", userSchema);

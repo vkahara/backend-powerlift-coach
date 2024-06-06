@@ -1,5 +1,8 @@
+const hashPassword = require("./utils/hashPassword")
+const signToken = require("./utils/signToken")
+const verifyPassword = require("./utils/verifyPassword")
 const { v4: uuidv4 } = require("uuid");
-const User = require("./models/Users");
+const User = require("./models/User");
 
 const resolvers = {
   Query: {
@@ -13,19 +16,42 @@ const resolvers = {
       return await User.find();
     }
   },
-
   Mutation: {
-    //create new user
     createUser: async (parent, args, context, info) => {
-      const newUser = new User({
-        id: uuidv4(),
-        username: args.username,
-        password: args.password,
-        squatMax: args.squatMax,
-        benchMax: args.benchMax,
-        deadliftMax: args.deadliftMax
-      });
-      return await newUser.save();
+        const { password, ...rest} = args
+        const hashedPassword = await hashPassword(password)
+        const newUser = new User({
+            id: uuidv4(),
+            username: args.username,
+            password: hashedPassword,
+            squatMax: args.squatMax,
+            benchMax: args.benchMax,
+            deadliftMax: args.deadliftMax
+        })
+        newUser.save()
+        return {
+            id: newUser.id,
+            username: newUser.username,
+            password: newUser.password,
+            squatMax: newUser.squatMax,
+            benchMax: newUser.benchMax,
+            deadliftMax: newUser.deadliftMax,
+            token: signToken({ userId: newUser.id})
+        }
+    },
+    loginUser: async (parent, args, context, info) => {
+        const {password, username } = args
+        const result = await User.findOne({username: username})
+        const passwordIsValid = await verifyPassword(result.password, password)
+
+        if (!passwordIsValid) {
+            return "Invalid password"
+        }
+        return {
+            id: result.id,
+            username: result.username,
+            token: signToken({userId: result.id})
+    }
     }
   }
 };
