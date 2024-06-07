@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     user(username: String!): User
     users: [User]
-    exercise(username: String!, week: Int!, day: Int!, exercise: Int!): Exercise)
+    exercise(username: String!, week: Int!, day: Int!, exercise: Int!): Exercise
     day(username: String!, week: Int!, day: Int!): Day
     week(username: String!, week: Int!): Week
   }
