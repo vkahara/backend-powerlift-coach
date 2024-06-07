@@ -1,6 +1,4 @@
-const { squatMax, benchMax, deadliftMax } = maxLifts;
-
-const weeks = {
+const getWeeks = ({ squatMax, benchMax, deadliftMax }) => ({
   week1: {
     day1: {
       exercise1: {
@@ -2497,4 +2495,6 @@ const weeks = {
       }
     }
   }
-};
+});
+
+module.exports = getWeeks;
