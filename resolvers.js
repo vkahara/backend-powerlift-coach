@@ -9,6 +9,8 @@ const resolvers = {
   Query: {
     //get one user
     user: async (parent, args, context, info) => {
+        // const { token } = args
+
       return await User.findOne({ username: args.username });
     },
 
@@ -36,7 +38,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    createUser: async (parent, args, context, info) => {
+    createUser: async (parent, args, context, info) => { 
         const { password, ...rest} = args
         const hashedPassword = await hashPassword(password)
         const newUser = new User({
@@ -45,7 +47,7 @@ const resolvers = {
             password: hashedPassword,
             squatMax: args.squatMax,
             benchMax: args.benchMax,
-            deadliftMax: args.deadliftMax
+            deadliftMax: args.deadliftMax,
         })
         newUser.save()
         return {
@@ -62,7 +64,7 @@ const resolvers = {
         const {password, username } = args
         const result = await User.findOne({username: username})
         const passwordIsValid = await verifyPassword(result.password, password)
-
+        console.log(result)
         if (!passwordIsValid) {
             return "Invalid password"
         }

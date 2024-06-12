@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Query {
-    user(username: String!): User
+    user(username: String!, token: String!): User
     users: [User]
     exercise(username: String!, week: Int!, day: Int!, exercise: Int!): Exercise
     day(username: String!, week: Int!, day: Int!): Day
@@ -19,7 +19,7 @@ const typeDefs = gql`
     loginUser(
         username: String!
         password: String!
-    ): User
+    ): LoginUser
   }
   type User {
     id: ID!
@@ -29,7 +29,13 @@ const typeDefs = gql`
     squatMax: Float!
     benchMax: Float!
     deadliftMax: Float!
+    onGoingWeek: Int!
   }
+    type LoginUser {
+        id: ID
+        username: String
+        token: String
+    }
 
   type Exercise {
     name: String!

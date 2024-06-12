@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   squatMax: { type: Number, default: 0 },
   benchMax: { type: Number, default: 0 },
   deadliftMax: { type: Number, default: 0 },
+  onGoingWeek: { type: Number, default: 1}
 });
 
 const User = mongoose.model("User", userSchema);
